@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="description" content="Meet the directors of Novel Knitts Private Limited — Mr. Anjani Kedia and Mr. Divyansh Marodia. Visionary leaders in the textile industry."/>
+  <meta name="keywords" content="crochet fabric, knitted fabric, textile manufacturer, Surat, Gujarat, Novel Knitts, garments, home textiles, premium fabric"/>
+  <meta name="author" content="Novel Knitts Private Limited"/>
+  <meta property="og:title" content="Novel Knitts Private Limited"/>
+  <meta property="og:description" content="Meet the directors of Novel Knitts Private Limited — Mr. Anjani Kedia and Mr. Divyansh Marodia. Visionary leaders in the textile industry."/>
+  <meta property="og:type" content="website"/>
+  <link rel="icon" type="image/png" href="logo.png"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Directors — Novel Knitts Private Limited</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="shared.css"/>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <script>
+    firebase.initializeApp({
+      apiKey: "AIzaSyC4lJuq3hFSegRZYTyQqERFARWfmyAyEiQ",
+      authDomain: "novel-knitts.firebaseapp.com",
+      projectId: "novel-knitts",
+      storageBucket: "novel-knitts.firebasestorage.app",
+      messagingSenderId: "1076525870787",
+      appId: "1:1076525870787:web:c16a19fe23a35114287c76"
+    });
+    window.db = firebase.firestore();
+  </script>
+</head>
+<body>
+
+  <nav>
+    <a class="nav-logo" href="index.html">
+      <img src="logo.png" class="nav-logo-mark-img" alt="Novel Knitts Logo"/>
+      <div class="nav-brand">Novel Knitts<span>Private Limited</span></div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="directors.html" class="active">Directors</a></li>
+      <li><a href="media.html">Media &amp; Press</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+    </ul>
+    <button class="hamburger" id="hamburgerBtn"><span></span><span></span><span></span></button>
+  </nav>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="index.html" class="mobile-link">Home</a>
+    <a href="about.html" class="mobile-link">About Us</a>
+    <a href="products.html" class="mobile-link">Products</a>
+    <a href="directors.html" class="mobile-link active">Directors</a>
+    <a href="media.html" class="mobile-link">Media &amp; Press</a>
+    <a href="contact.html" class="mobile-link">Contact Us</a>
+  </div>
+  <div class="menu-overlay" id="menuOverlay"></div>
+
+  <!-- PAGE HERO -->
+  <section class="page-hero bg-dark">
+    <div class="container">
+      <p class="section-tag" style="color:var(--silver)">Leadership</p>
+      <h1 class="page-hero-title">Our Directors</h1>
+      <p class="page-hero-desc">The visionaries behind Novel Knitts — expertise, passion, and a relentless commitment to excellence in the textile industry.</p>
+    </div>
+  </section>
+
+  <!-- DIRECTORS -->
+  <section class="section-pad bg-cream">
+    <div class="container">
+      <div class="directors-grid">
+
+        <!-- Director 1: Anjani Kedia (placeholder) -->
+        <div class="director-card">
+          <div class="director-photo-wrap">
+            <div class="director-photo-placeholder" id="anjani-photo-wrap">
+              <i class="fa-solid fa-user" style="font-size:3rem;color:var(--silver);"></i>
+            </div>
+          </div>
+          <div class="director-info">
+            <p class="director-tag">Co-Founder</p>
+            <h2 class="director-name">Mr. Anjani S. Kedia</h2>
+            <p class="director-role">Director</p>
+            <p class="director-bio">Mr. Anjani S. Kedia is a co-founder and Director of Novel Knitts Private Limited, joining the company in 2026. A Commerce Graduate and BBA holder, he brings over 24 years of industry experience rooted in a family legacy of textile business spanning three generations. He oversees Finance, Design, and Quality at Novel Knitts, bringing deep domain expertise and a strong entrepreneurial vision to the company.</p>
+
+            <blockquote class="director-quote">
+              "We aim to make Novel Knitts Private Limited a pioneer in crochet and 3D knits. We aim to generate value for all our stakeholders and achieve a turnover of ₹20 crores by 2028."
+            </blockquote>
+
+            <div class="director-details">
+              <div class="director-detail-item">
+                <span class="director-detail-label">Year Joined</span>
+                <span class="director-detail-val">2026</span>
+              </div>
+              <div class="director-detail-item">
+                <span class="director-detail-label">Experience</span>
+                <span class="director-detail-val">24 Years</span>
+              </div>
+              <div class="director-detail-item">
+                <span class="director-detail-label">Education</span>
+                <span class="director-detail-val">Graduate Commerce / BBA</span>
+              </div>
+              <div class="director-detail-item">
+                <span class="director-detail-label">Responsibility</span>
+                <span class="director-detail-val">Finance, Design &amp; Quality</span>
+              </div>
+            </div>
+
+            <div class="director-milestone">
+              <span class="director-detail-label">Key Milestone</span>
+              <p class="milestone-text">Highest number of crochet knitting machines in Surat — a testament to the company's manufacturing scale and commitment to excellence.</p>
+            </div>
+
+            <div class="director-milestone" style="margin-top:0.8rem;">
+              <span class="director-detail-label">Recognition</span>
+              <p class="milestone-text">CMAI — Clothing Manufacturers Association of India member.</p>
+            </div>
+
+            <div class="director-milestone" style="margin-top:0.8rem;">
+              <span class="director-detail-label">Career Journey</span>
+              <p class="milestone-text">Rooted in a family business with a textile legacy spanning three generations, Mr. Kedia brings unparalleled industry insight and expertise to Novel Knitts.</p>
+            </div>
+
+            <div class="director-links">
+              <a href="tel:+919925232666" class="director-link-btn">
+                <i class="fa-solid fa-phone"></i> +91 99252 32666
+              </a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Director 2: Divyansh Marodia -->
+        <div class="director-card">
+          <div class="director-photo-wrap">
+            <div class="director-photo-placeholder" id="divyansh-photo-wrap">
+              <i class="fa-solid fa-user" style="font-size:3rem;color:var(--silver);"></i>
+            </div>
+          </div>
+          <div class="director-info">
+            <p class="director-tag">Co-Founder</p>
+            <h2 class="director-name">Mr. Divyansh Marodia</h2>
+            <p class="director-role">Director</p>
+            <p class="director-bio">Mr. Divyansh Marodia is a co-founder and Director of Novel Knitts Private Limited, joining the company in 2023. An MBA graduate from IMT Ghaziabad and BBA from Christ University, Bangalore, he brings over 6 years of industry experience and a strong vision for the company's future. He has been instrumental in driving business development, customer relationships, and the company's growth strategy.</p>
+
+            <blockquote class="director-quote">
+              "We aim to make Novel Knitts Private Limited a pioneer in crochet and 3D knits. We aim to generate value for all our stakeholders and achieve a turnover of ₹20 crores by 2028."
+            </blockquote>
+
+            <div class="director-details">
+              <div class="director-detail-item">
+                <span class="director-detail-label">Year Joined</span>
+                <span class="director-detail-val">2023</span>
+              </div>
+              <div class="director-detail-item">
+                <span class="director-detail-label">Experience</span>
+                <span class="director-detail-val">6 Years</span>
+              </div>
+              <div class="director-detail-item">
+                <span class="director-detail-label">Education</span>
+                <span class="director-detail-val">MBA — IMT Ghaziabad<br/>BBA — Christ University</span>
+              </div>
+              <div class="director-detail-item">
+                <span class="director-detail-label">Recognition</span>
+                <span class="director-detail-val">CMAI — Clothing Manufacturers Association of India member.</span>
+              </div>
+            </div>
+
+            <div class="director-milestone">
+              <span class="director-detail-label">Key Milestone</span>
+              <p class="milestone-text">Supplied to leading brands and export houses in the garment industry.</p>
+            </div>
+
+            <div class="director-links">
+              <a href="https://www.linkedin.com/in/divyaansh-marodiaa-73aa82148" target="_blank" class="director-link-btn">
+                <i class="fa-brands fa-linkedin"></i> LinkedIn Profile
+              </a>
+              <a href="tel:+919993822323" class="director-link-btn">
+                <i class="fa-solid fa-phone"></i> +91 99938 22323
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <a href="https://wa.me/919993822323" target="_blank" class="whatsapp-btn">
+    <svg viewBox="0 0 48 48" width="36" height="36" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="24" cy="24" r="24" fill="#25D366"/>
+      <path fill="white" d="M24 10C16.27 10 10 16.27 10 24c0 2.49.67 4.82 1.84 6.83L10 38l7.38-1.81A13.93 13.93 0 0 0 24 38c7.73 0 14-6.27 14-14S31.73 10 24 10zm0 25.5c-2.1 0-4.07-.57-5.76-1.56l-.41-.24-4.28 1.02.99-3.96-.27-.42A11.44 11.44 0 0 1 12.5 24c0-6.34 5.16-11.5 11.5-11.5S35.5 17.66 35.5 24 30.34 35.5 24 35.5zm6.29-8.43c-.34-.17-2.03-.99-2.35-1.1-.31-.11-.54-.17-.77.17-.23.34-.88 1.1-1.08 1.33-.2.23-.4.26-.74.09-.34-.17-1.44-.53-2.74-1.69-1.01-.9-1.7-2.01-1.9-2.35-.2-.34-.02-.52.15-.69.15-.15.34-.4.51-.6.17-.2.23-.34.34-.57.11-.23.06-.43-.03-.6-.09-.17-.77-1.85-1.05-2.53-.28-.67-.56-.58-.77-.59l-.65-.01c-.23 0-.6.09-.91.43-.31.34-1.19 1.16-1.19 2.83s1.22 3.28 1.39 3.51c.17.23 2.4 3.67 5.82 5.14.81.35 1.45.56 1.94.72.82.26 1.56.22 2.15.13.66-.1 2.03-.83 2.32-1.62.29-.8.29-1.48.2-1.62-.08-.14-.31-.23-.65-.4z"/>
+    </svg>
+  </a>
+
+  <footer>
+    <div class="footer-brand">Novel Knitts Private Limited</div>
+    <ul class="footer-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="products.html">Products</a></li>
+      <li><a href="profile.html">Corporate Profile</a></li><li><a href="directors.html">Directors</a></li>
+      <li><a href="media.html">Media &amp; Press</a></li>
+      <li><a href="contact.html">Contact Us</a></li>
+    </ul>
+    <p class="footer-copy">© 2026 Novel Knitts Pvt. Ltd. All rights reserved.</p>
+  </footer>
+
+  <script src="shared.js"></script>
+  <script>
+    async function loadDirectorPhotos() {
+      try {
+        // Anjani photo
+        const anjaniSnap = await db.collection('galleries').doc('directors_anjani').collection('photos').get();
+        if (!anjaniSnap.empty) {
+          const url = anjaniSnap.docs[0].data().url;
+          const wrap = document.getElementById('anjani-photo-wrap');
+          wrap.innerHTML = '';
+          wrap.style.padding = '0';
+          const img = document.createElement('img');
+          img.src = url;
+          img.style.cssText = 'width:100%;height:320px;object-fit:cover;object-position:top;border-radius:6px;display:block;';
+          wrap.appendChild(img);
+        }
+        // Divyansh photo
+        const divyanshSnap = await db.collection('galleries').doc('directors_divyansh').collection('photos').get();
+        if (!divyanshSnap.empty) {
+          const url = divyanshSnap.docs[0].data().url;
+          const wrap = document.getElementById('divyansh-photo-wrap');
+          wrap.innerHTML = '';
+          wrap.style.padding = '0';
+          const img = document.createElement('img');
+          img.src = url;
+          img.style.cssText = 'width:100%;height:320px;object-fit:cover;object-position:top;border-radius:6px;display:block;';
+          wrap.appendChild(img);
+        }
+      } catch(e) { console.error(e); }
+    }
+    loadDirectorPhotos();
+  </script>
+</body>
+</html>

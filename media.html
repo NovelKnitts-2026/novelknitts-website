@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="description" content="Media & Press — Novel Knitts Private Limited"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="icon" type="image/png" href="logo.png"/>
+  <title>Media & Press — Novel Knitts Private Limited</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet"/>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link rel="stylesheet" href="shared.css"/>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
+  <script>
+    firebase.initializeApp({
+      apiKey: "AIzaSyC4lJuq3hFSegRZYTyQqERFARWfmyAyEiQ",
+      authDomain: "novel-knitts.firebaseapp.com",
+      projectId: "novel-knitts",
+      storageBucket: "novel-knitts.firebasestorage.app",
+      messagingSenderId: "1076525870787",
+      appId: "1:1076525870787:web:c16a19fe23a35114287c76"
+    });
+    window.db = firebase.firestore();
+  </script>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">
+    <img src="logo.png" class="nav-logo-mark-img" alt="NK"/>
+    <div class="nav-brand">Novel Knitts<span>Private Limited</span></div>
+  </a>
+  <ul class="nav-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="products.html">Products</a></li>
+    <li><a href="profile.html">Corporate Profile</a></li>
+    <li><a href="directors.html">Directors</a></li>
+    <li><a href="media.html" class="active">Media &amp; Press</a></li>
+    <li><a href="contact.html">Contact Us</a></li>
+  </ul>
+  <button class="hamburger" id="hamburgerBtn"><span></span><span></span><span></span></button>
+</nav>
+<div class="mobile-menu" id="mobileMenu">
+  <a href="index.html" class="mobile-link">Home</a>
+  <a href="about.html" class="mobile-link">About Us</a>
+  <a href="products.html" class="mobile-link">Products</a>
+  <a href="profile.html" class="mobile-link">Corporate Profile</a>
+  <a href="directors.html" class="mobile-link">Directors</a>
+  <a href="media.html" class="mobile-link active">Media &amp; Press</a>
+  <a href="contact.html" class="mobile-link">Contact Us</a>
+</div>
+<div class="menu-overlay" id="menuOverlay"></div>
+
+<!-- PAGE HERO -->
+<section class="page-hero bg-dark">
+  <div class="container">
+    <p class="section-tag" style="color:var(--silver)">News & Recognition</p>
+    <h1 class="page-hero-title">Media & Press</h1>
+    <p class="page-hero-desc">Awards & Certifications, recognitions, milestones and media coverage.</p>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="section-pad bg-dark">
+  <div class="container">
+    <div class="text-center" style="margin-bottom:3rem;">
+      <p class="section-tag" style="color:var(--silver)">Trust & Recognition</p>
+      <h2 class="section-title" style="color:var(--white)">Awards & Certifications &amp; Recognition</h2>
+    </div>
+    <div class="cert-grid">
+      <div class="cert-card">
+        <div class="cert-icon">🏅</div>
+        <h3 class="cert-name">CMAI</h3>
+        <p class="cert-desc">Clothing Manufacturers Association of India — recognised member, reflecting our commitment to quality standards in the garment industry.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MEDIA GALLERY -->
+<section class="section-pad bg-silver-pale">
+  <div class="container">
+    <p class="section-tag">Gallery</p>
+    <h2 class="section-title" style="margin-bottom:2rem;">Media Gallery</h2>
+
+    <!-- TAB BUTTONS -->
+    <div style="display:flex;gap:0.8rem;flex-wrap:wrap;margin-bottom:2rem;" id="mediaTabRow">
+      <button id="btn-awards-certifications" class="media-tab-btn active-tab" onclick="loadTab('awards-certifications')">Awards & Certifications</button>
+      <button id="btn-events" class="media-tab-btn" onclick="loadTab('events')">Events</button>
+      <button id="btn-coverage" class="media-tab-btn" onclick="loadTab('coverage')">Media Coverage</button>
+    </div>
+
+    <!-- PHOTO GRID -->
+    <div class="product-grid" id="mediaGrid">
+      <div class="grid-empty">Loading...</div>
+    </div>
+  </div>
+</section>
+
+<!-- PRESS RELEASES -->
+<section class="section-pad bg-cream">
+  <div class="container">
+    <p class="section-tag">Press Releases &amp; Updates</p>
+    <h2 class="section-title" style="margin-bottom:2rem;">Latest News</h2>
+    <div class="press-grid" id="pressGrid">
+      <div class="grid-empty" style="grid-column:1/-1;">Loading...</div>
+    </div>
+  </div>
+</section>
+
+<!-- MEDIA ENQUIRIES -->
+<section class="section-pad bg-navy">
+  <div class="container text-center">
+    <p class="section-tag" style="color:var(--silver)">Get In Touch</p>
+    <h2 class="section-title" style="color:var(--white);margin-bottom:1rem;">Media Enquiries</h2>
+    <p style="font-size:0.9rem;color:var(--silver);max-width:500px;margin:0 auto 2rem;line-height:1.8;">For press enquiries, interviews, or media coverage requests, please reach out to us directly.</p>
+    <div style="display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;">
+      <a href="mailto:admin@novelknitts.com" class="btn-primary" style="text-transform:none;letter-spacing:0.05em;"><i class="fa-solid fa-envelope"></i> admin@novelknitts.com</a>
+      <a href="https://wa.me/919993822323" target="_blank" class="btn-outline" style="color:var(--white);border-color:rgba(255,255,255,0.4)"><i class="fa-brands fa-whatsapp"></i> WhatsApp Us</a>
+    </div>
+  </div>
+</section>
+
+<a href="https://wa.me/919993822323" target="_blank" class="whatsapp-btn">
+  <svg viewBox="0 0 48 48" width="36" height="36" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="24" cy="24" r="24" fill="#25D366"/>
+    <path fill="white" d="M24 10C16.27 10 10 16.27 10 24c0 2.49.67 4.82 1.84 6.83L10 38l7.38-1.81A13.93 13.93 0 0 0 24 38c7.73 0 14-6.27 14-14S31.73 10 24 10zm0 25.5c-2.1 0-4.07-.57-5.76-1.56l-.41-.24-4.28 1.02.99-3.96-.27-.42A11.44 11.44 0 0 1 12.5 24c0-6.34 5.16-11.5 11.5-11.5S35.5 17.66 35.5 24 30.34 35.5 24 35.5zm6.29-8.43c-.34-.17-2.03-.99-2.35-1.1-.31-.11-.54-.17-.77.17-.23.34-.88 1.1-1.08 1.33-.2.23-.4.26-.74.09-.34-.17-1.44-.53-2.74-1.69-1.01-.9-1.7-2.01-1.9-2.35-.2-.34-.02-.52.15-.69.15-.15.34-.4.51-.6.17-.2.23-.34.34-.57.11-.23.06-.43-.03-.6-.09-.17-.77-1.85-1.05-2.53-.28-.67-.56-.58-.77-.59l-.65-.01c-.23 0-.6.09-.91.43-.31.34-1.19 1.16-1.19 2.83s1.22 3.28 1.39 3.51c.17.23 2.4 3.67 5.82 5.14.81.35 1.45.56 1.94.72.82.26 1.56.22 2.15.13.66-.1 2.03-.83 2.32-1.62.29-.8.29-1.48.2-1.62-.08-.14-.31-.23-.65-.4z"/>
+  </svg>
+</a>
+
+<footer>
+  <div class="footer-brand">Novel Knitts Private Limited</div>
+  <ul class="footer-links">
+    <li><a href="index.html">Home</a></li>
+    <li><a href="about.html">About Us</a></li>
+    <li><a href="products.html">Products</a></li>
+    <li><a href="profile.html">Corporate Profile</a></li>
+    <li><a href="directors.html">Directors</a></li>
+    <li><a href="media.html">Media &amp; Press</a></li>
+    <li><a href="contact.html">Contact Us</a></li>
+  </ul>
+  <p class="footer-copy">© 2026 Novel Knitts Pvt. Ltd. All rights reserved.</p>
+</footer>
+
+<script src="shared.js"></script>
+
+<style>
+  .media-tab-btn {
+    font-family: 'Jost', sans-serif;
+    font-size: 0.72rem; font-weight: 500;
+    letter-spacing: 0.12em; text-transform: uppercase;
+    padding: 0.7rem 1.5rem; border-radius: 2px;
+    border: 1px solid rgba(30,42,69,0.2);
+    background: var(--white); color: var(--navy);
+    cursor: pointer; transition: all 0.3s;
+  }
+  .active-tab {
+    background: var(--navy) !important;
+    color: var(--white) !important;
+    border-color: var(--navy) !important;
+  }
+</style>
+
+<script>
+  var currentTab = 'awards-certifications';
+
+  function loadTab(sub) {
+    currentTab = sub;
+    // Update button styles
+    ['awards-certifications','events','coverage'].forEach(function(s) {
+      var btn = document.getElementById('btn-' + s);
+      if (btn) {
+        if (s === sub) {
+          btn.classList.add('active-tab');
+        } else {
+          btn.classList.remove('active-tab');
+        }
+      }
+    });
+    loadMediaPhotos(sub);
+  }
+
+  function loadMediaPhotos(sub) {
+    var grid = document.getElementById('mediaGrid');
+    grid.innerHTML = '<div class="grid-empty">Loading...</div>';
+    var docId = 'media-press_' + sub;
+    window.db.collection('galleries').doc(docId).collection('photos').get()
+      .then(function(snap) {
+        if (snap.empty) {
+          grid.innerHTML = '<div class="grid-empty">No photos added yet.</div>';
+          return;
+        }
+        grid.innerHTML = '';
+        snap.forEach(function(d) {
+          var card = document.createElement('div');
+          card.className = 'product-photo-card loaded';
+          var img = document.createElement('img');
+          img.src = d.data().url.replace('/upload/', '/upload/q_auto,f_auto,w_600,c_fill/');
+          img.loading = 'lazy';
+          img.style.opacity = '1';
+          card.appendChild(img);
+          grid.appendChild(card);
+        });
+      })
+      .catch(function(e) {
+        grid.innerHTML = '<div class="grid-empty">No photos added yet.</div>';
+      });
+  }
+
+  function loadNews() {
+    var grid = document.getElementById('pressGrid');
+    var defaultItems = [
+      { date:'April 2026', title:'Novel Knitts Private Limited — Strategic Rebranding', desc:'In April 2026, the company underwent a strategic rebranding marking a new chapter of growth, ambition, and elevated standards.', tag:'Rebranding' },
+      { date:'2022', title:'Company Founded in Surat, Gujarat', desc:'Novel Knitts was established in Surat — India\'s textile capital — with a vision to deliver premium crochet fabric solutions across India and global markets.', tag:'Milestone' },
+      { date:'Ongoing', title:'Supplying to Leading Brands & Export Houses', desc:'Novel Knitts has successfully supplied premium crochet fabrics to leading brands and export houses in the garment industry.', tag:'Achievement' }
+    ];
+
+    window.db.collection('news').get()
+      .then(function(snap) {
+        var items = [];
+        snap.forEach(function(d) { items.push(d.data()); });
+        items.sort(function(a,b) { return (b.createdAt||0) - (a.createdAt||0); });
+        var allItems = items.concat(defaultItems);
+        renderNews(allItems);
+      })
+      .catch(function() {
+        renderNews(defaultItems);
+      });
+  }
+
+  function renderNews(items) {
+    var grid = document.getElementById('pressGrid');
+    grid.innerHTML = '';
+    items.forEach(function(item) {
+      var card = document.createElement('div');
+      card.className = 'press-card';
+      card.innerHTML =
+        '<div class="press-date">' + (item.date||'') + '</div>' +
+        '<h3 class="press-title">' + (item.title||'') + '</h3>' +
+        '<p class="press-desc">' + (item.desc||'') + '</p>' +
+        '<div class="press-tag-row"><span class="press-tag">' + (item.tag||'') + '</span></div>';
+      grid.appendChild(card);
+    });
+  }
+
+  // Init
+  loadMediaPhotos('awards-certifications');
+  loadNews();
+</script>
+
+</body>
+</html>
