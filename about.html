@@ -48,7 +48,7 @@
     <div class="container">
       <p class="section-tag" style="color:var(--silver)">Who We Are</p>
       <h1 class="page-hero-title">About Novel Knitts</h1>
-      <p class="page-hero-desc">Founded in 2022, driven by innovation — crafting premium crochet fabrics for the world.</p>
+      <p class="page-hero-desc">Founded in 2022, rebranded in 2026 — crafting premium crochet fabrics for the world.</p>
     </div>
   </section>
 
@@ -58,7 +58,7 @@
       <div>
         <p class="section-tag">Our Story</p>
         <h2 class="section-title">Where Thread Becomes <em>Artistry</em></h2>
-        <p class="body-text">Founded in 2022, rebranded and headquartered in Surat, Gujarat, Novel Knitts Private Limited is a dynamic textile manufacturing and trading company specialising in premium crochet fabrics for the garment industry. In April 2026, the company underwent a strategic rebranding as Novel Knitts Private Limited, reflecting its renewed vision, growth, and commitment to excellence.</p>
+        <p class="body-text">Founded in 2022 and rebranded in 2026, headquartered in Surat, Gujarat, Novel Knitts Private Limited is a dynamic textile manufacturing and trading company specialising in premium crochet fabrics for the garment industry. In April 2026, the company underwent a strategic rebranding as Novel Knitts Private Limited, reflecting its renewed vision, growth, and commitment to excellence.</p>
         <p class="body-text">Established by Mr. Anjani Kedia and Mr. Divyansh Marodia, the company is dedicated to delivering innovative, high-quality fabric solutions that meet the evolving needs of fashion brands, garment manufacturers, and textile businesses across India and international markets.</p>
         <p class="body-text">With an in-house manufacturing setup spread across 15,000 square feet, equipped with advanced crochet machines and a production capacity of approximately 50,000 metres, we combine craftsmanship, technology, and industry expertise to create fabrics that meet the highest standards of quality and design.</p>
         <p class="body-text">At Novel Knitts, quality is our top priority. Every fabric undergoes a thorough quality inspection process, and only approved materials are delivered to our customers. Our dedicated team of 30+ professionals works with a customer-centric approach to ensure reliability, consistency, and timely delivery.</p>
@@ -224,5 +224,33 @@
   </footer>
 
   <script src="shared.js"></script>
+<script>
+  // Remove Netlify badge
+  document.addEventListener('DOMContentLoaded', function() {
+    var observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        mutation.addedNodes.forEach(function(node) {
+          if (node.nodeType === 1) {
+            var links = node.querySelectorAll ? node.querySelectorAll('a[href*="netlify"]') : [];
+            links.forEach(function(link) {
+              var parent = link.closest('[style*="position"]') || link.parentElement;
+              if (parent) parent.style.display = 'none';
+            });
+            if (node.tagName === 'A' && node.href && node.href.includes('netlify')) {
+              var parent = node.closest('[style*="position"]') || node.parentElement;
+              if (parent) parent.style.display = 'none';
+            }
+          }
+        });
+      });
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+    // Also check existing elements
+    document.querySelectorAll('a[href*="netlify.com"]').forEach(function(a) {
+      var parent = a.closest('[style*="position:fixed"]') || a.closest('[style*="position: fixed"]');
+      if (parent) parent.style.display = 'none';
+    });
+  });
+</script>
 </body>
 </html>

@@ -465,3 +465,17 @@ footer { background:var(--navy-dark); padding:3rem 4rem; display:flex; align-ite
   overflow-y: auto;
   margin: auto;
 }
+
+/* ── HIDE NETLIFY BADGE ── */
+[data-netlify-deploy-id],
+.netlify-identity-button,
+a[href*="netlify.com"][style*="position:fixed"],
+a[href*="netlify.com"][style*="position: fixed"],
+div[style*="position:fixed"] a[href*="netlify"],
+#netlify-identity-widget,
+.netlify-badge {
+  display: none !important;
+  opacity: 0 !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}

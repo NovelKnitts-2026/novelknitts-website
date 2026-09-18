@@ -80,7 +80,7 @@
             <p class="director-tag">Co-Founder</p>
             <h2 class="director-name">Mr. Anjani S. Kedia</h2>
             <p class="director-role">Director</p>
-            <p class="director-bio">Mr. Anjani S. Kedia is a co-founder and Director of Novel Knitts Private Limited, joining the company in 2026. A Commerce Graduate and BBA holder, he brings over 24 years of industry experience rooted in a family legacy of textile business spanning three generations. He oversees Finance, Design, and Quality at Novel Knitts, bringing deep domain expertise and a strong entrepreneurial vision to the company.</p>
+            <p class="director-bio">Mr. Anjani S. Kedia is a co-founder and Director of Novel Knitts Private Limited, joining the company in 2022. A Commerce Graduate and BBA holder, he brings over 24 years of industry experience rooted in a family legacy of textile business spanning three generations. He oversees Finance, Design, and Quality at Novel Knitts, bringing deep domain expertise and a strong entrepreneurial vision to the company.</p>
 
             <blockquote class="director-quote">
               "We aim to make Novel Knitts Private Limited a pioneer in crochet and 3D knits. We aim to generate value for all our stakeholders and achieve a turnover of ₹20 crores by 2028."
@@ -89,7 +89,7 @@
             <div class="director-details">
               <div class="director-detail-item">
                 <span class="director-detail-label">Year Joined</span>
-                <span class="director-detail-val">2026</span>
+                <span class="director-detail-val">2022</span>
               </div>
               <div class="director-detail-item">
                 <span class="director-detail-label">Experience</span>
@@ -97,7 +97,7 @@
               </div>
               <div class="director-detail-item">
                 <span class="director-detail-label">Education</span>
-                <span class="director-detail-val">Graduate Commerce / BBA</span>
+                <span class="director-detail-val">Commerce Graduate / BBA</span>
               </div>
               <div class="director-detail-item">
                 <span class="director-detail-label">Responsibility</span>
@@ -107,7 +107,7 @@
 
             <div class="director-milestone">
               <span class="director-detail-label">Key Milestone</span>
-              <p class="milestone-text">Highest number of crochet knitting machines in Surat — a testament to the company's manufacturing scale and commitment to excellence.</p>
+              <p class="milestone-text">Highest number of crochet machines in Surat — a testament to the company's manufacturing scale and commitment to excellence.</p>
             </div>
 
             <div class="director-milestone" style="margin-top:0.8rem;">
@@ -236,5 +236,33 @@
     }
     loadDirectorPhotos();
   </script>
+<script>
+  // Remove Netlify badge
+  document.addEventListener('DOMContentLoaded', function() {
+    var observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        mutation.addedNodes.forEach(function(node) {
+          if (node.nodeType === 1) {
+            var links = node.querySelectorAll ? node.querySelectorAll('a[href*="netlify"]') : [];
+            links.forEach(function(link) {
+              var parent = link.closest('[style*="position"]') || link.parentElement;
+              if (parent) parent.style.display = 'none';
+            });
+            if (node.tagName === 'A' && node.href && node.href.includes('netlify')) {
+              var parent = node.closest('[style*="position"]') || node.parentElement;
+              if (parent) parent.style.display = 'none';
+            }
+          }
+        });
+      });
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+    // Also check existing elements
+    document.querySelectorAll('a[href*="netlify.com"]').forEach(function(a) {
+      var parent = a.closest('[style*="position:fixed"]') || a.closest('[style*="position: fixed"]');
+      if (parent) parent.style.display = 'none';
+    });
+  });
+</script>
 </body>
 </html>

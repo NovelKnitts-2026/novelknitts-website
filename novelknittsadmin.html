@@ -594,5 +594,33 @@
     }
   });
 </script>
+<script>
+  // Remove Netlify badge
+  document.addEventListener('DOMContentLoaded', function() {
+    var observer = new MutationObserver(function(mutations) {
+      mutations.forEach(function(mutation) {
+        mutation.addedNodes.forEach(function(node) {
+          if (node.nodeType === 1) {
+            var links = node.querySelectorAll ? node.querySelectorAll('a[href*="netlify"]') : [];
+            links.forEach(function(link) {
+              var parent = link.closest('[style*="position"]') || link.parentElement;
+              if (parent) parent.style.display = 'none';
+            });
+            if (node.tagName === 'A' && node.href && node.href.includes('netlify')) {
+              var parent = node.closest('[style*="position"]') || node.parentElement;
+              if (parent) parent.style.display = 'none';
+            }
+          }
+        });
+      });
+    });
+    observer.observe(document.body, { childList: true, subtree: true });
+    // Also check existing elements
+    document.querySelectorAll('a[href*="netlify.com"]').forEach(function(a) {
+      var parent = a.closest('[style*="position:fixed"]') || a.closest('[style*="position: fixed"]');
+      if (parent) parent.style.display = 'none';
+    });
+  });
+</script>
 </body>
 </html>
