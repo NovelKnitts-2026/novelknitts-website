@@ -85,7 +85,7 @@ nav {
   min-height:100vh; background:linear-gradient(155deg,var(--navy-dark) 0%,var(--navy) 45%,#2c3d60 100%);
   display:flex; align-items:center; position:relative; overflow:hidden; padding:0 4rem;
 }
-.hero::before { content:''; position:absolute; inset:0; background-image:repeating-linear-gradient(90deg,rgba(176,184,200,0.03) 0px,rgba(176,184,200,0.03) 1px,transparent 1px,transparent 40px),repeating-linear-gradient(0deg,rgba(176,184,200,0.03) 0px,rgba(176,184,200,0.03) 1px,transparent 1px,transparent 40px); }
+.hero::before { content:''; position:absolute; inset:0; }
 .hero-content { position:relative; z-index:2; max-width:680px; animation:fadeUp 1s ease both; }
 .hero-eyebrow { font-size:0.68rem; font-weight:400; letter-spacing:0.35em; text-transform:uppercase; color:var(--silver); margin-bottom:1.6rem; display:flex; align-items:center; gap:1rem; }
 .hero-eyebrow::before { content:''; display:block; width:40px; height:1px; background:var(--silver); }
