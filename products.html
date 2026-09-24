@@ -265,33 +265,33 @@
 
   renderGrid();
 </script>
+
+<style>
+  [data-netlify-deploy-id], .netlify-badge, 
+  a[href*="netlify.com"][style*="fixed"],
+  div[style*="z-index: 99999"], div[style*="z-index:99999"],
+  #netlify-dev-badge { 
+    display:none!important; opacity:0!important; visibility:hidden!important; 
+    pointer-events:none!important; height:0!important; width:0!important;
+  }
+</style>
 <script>
-  // Remove Netlify badge
-  document.addEventListener('DOMContentLoaded', function() {
-    var observer = new MutationObserver(function(mutations) {
-      mutations.forEach(function(mutation) {
-        mutation.addedNodes.forEach(function(node) {
-          if (node.nodeType === 1) {
-            var links = node.querySelectorAll ? node.querySelectorAll('a[href*="netlify"]') : [];
-            links.forEach(function(link) {
-              var parent = link.closest('[style*="position"]') || link.parentElement;
-              if (parent) parent.style.display = 'none';
-            });
-            if (node.tagName === 'A' && node.href && node.href.includes('netlify')) {
-              var parent = node.closest('[style*="position"]') || node.parentElement;
-              if (parent) parent.style.display = 'none';
-            }
-          }
-        });
+  (function() {
+    function removeNetlify() {
+      document.querySelectorAll('*').forEach(function(el) {
+        var style = el.getAttribute('style') || '';
+        var href = el.getAttribute('href') || '';
+        if ((style.includes('fixed') || style.includes('z-index')) && href.includes('netlify')) {
+          el.parentElement && el.parentElement.remove();
+        }
       });
-    });
-    observer.observe(document.body, { childList: true, subtree: true });
-    // Also check existing elements
-    document.querySelectorAll('a[href*="netlify.com"]').forEach(function(a) {
-      var parent = a.closest('[style*="position:fixed"]') || a.closest('[style*="position: fixed"]');
-      if (parent) parent.style.display = 'none';
-    });
-  });
+    }
+    setTimeout(removeNetlify, 500);
+    setTimeout(removeNetlify, 1500);
+    setTimeout(removeNetlify, 3000);
+    var obs = new MutationObserver(removeNetlify);
+    obs.observe(document.body, {childList:true, subtree:true});
+  })();
 </script>
 </body>
 </html>
