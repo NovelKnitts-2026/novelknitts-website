@@ -2,104 +2,102 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8"/>
-  <link rel="icon" type="image/png" sizes="32x32" href="logo.png"/>
-  <link rel="icon" type="image/png" sizes="16x16" href="logo.png"/>
-  <link rel="apple-touch-icon" href="logo.png"/>
-  <meta name="google-site-verification" content="wB2t5zb90YR2Ey2p0M3j-EXZ-r_NXPEa5HOiyEDlV1o" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Admin — Novel Knitts</title>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet"/>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+  <link href="https://fonts.googleapis.com/css2?family=Jost:wght@300;400;500&display=swap" rel="stylesheet"/>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
   <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore-compat.js"></script>
-  <script>
-    firebase.initializeApp({
-      apiKey: "AIzaSyC4lJuq3hFSegRZYTyQqERFARWfmyAyEiQ",
-      authDomain: "novel-knitts.firebaseapp.com",
-      projectId: "novel-knitts",
-      storageBucket: "novel-knitts.firebasestorage.app",
-      messagingSenderId: "1076525870787",
-      appId: "1:1076525870787:web:c16a19fe23a35114287c76"
-    });
-    window.db = firebase.firestore();
-  </script>
   <style>
-    *{margin:0;padding:0;box-sizing:border-box}
-    body{font-family:'Jost',sans-serif;background:#131c30;min-height:100vh;color:#fff}
+    * { margin:0; padding:0; box-sizing:border-box; }
+    body { font-family:'Jost',sans-serif; background:#131c30; color:#fff; min-height:100vh; }
 
     /* LOGIN */
-    #loginScreen{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:2rem}
-    .login-box{background:#1e2a45;border-radius:10px;padding:2.5rem;width:100%;max-width:400px;text-align:center}
-    .login-logo{width:60px;height:60px;border-radius:8px;object-fit:cover;margin:0 auto 1rem;display:block}
-    .login-title{font-family:'Cormorant Garamond',serif;font-size:1.8rem;font-weight:300;margin-bottom:0.3rem}
-    .login-sub{font-size:0.72rem;letter-spacing:0.15em;text-transform:uppercase;color:#b0b8c8;margin-bottom:2rem}
-    .login-input{width:100%;background:rgba(255,255,255,0.08);border:1px solid rgba(176,184,200,0.2);border-radius:4px;padding:0.85rem 1rem;font-family:'Jost',sans-serif;font-size:0.9rem;color:#fff;outline:none;margin-bottom:1rem}
-    .login-btn{width:100%;background:#d6dce8;color:#131c30;border:none;padding:0.85rem;border-radius:4px;font-family:'Jost',sans-serif;font-size:0.78rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;cursor:pointer}
-    .login-error{color:#e74c3c;font-size:0.8rem;margin-bottom:0.8rem;display:none}
+    #loginScreen {
+      display:flex; align-items:center; justify-content:center;
+      min-height:100vh; padding:2rem;
+    }
+    .login-box {
+      background:#1e2a45; border-radius:12px; padding:2.5rem;
+      width:100%; max-width:380px; text-align:center;
+    }
+    .login-logo { width:64px; height:64px; border-radius:10px; object-fit:cover; margin:0 auto 1rem; display:block; }
+    .login-title { font-size:1.8rem; font-weight:300; margin-bottom:0.3rem; }
+    .login-sub { font-size:0.72rem; letter-spacing:0.15em; text-transform:uppercase; color:#b0b8c8; margin-bottom:2rem; }
+    .login-input {
+      width:100%; background:rgba(255,255,255,0.08); border:1px solid rgba(176,184,200,0.2);
+      border-radius:6px; padding:0.9rem 1rem; font-family:'Jost',sans-serif;
+      font-size:1rem; color:#fff; outline:none; margin-bottom:0.8rem;
+    }
+    .login-btn {
+      width:100%; background:#d6dce8; color:#131c30; border:none;
+      padding:0.9rem; border-radius:6px; font-family:'Jost',sans-serif;
+      font-size:0.85rem; font-weight:500; letter-spacing:0.1em;
+      text-transform:uppercase; cursor:pointer;
+    }
+    .login-btn:hover { background:#fff; }
+    .login-error { color:#e74c3c; font-size:0.82rem; margin-bottom:0.8rem; display:none; }
 
     /* DASHBOARD */
-    #dashboard{display:none;padding:1.5rem}
-    .dash-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;flex-wrap:wrap;gap:1rem;padding-bottom:1rem;border-bottom:1px solid rgba(176,184,200,0.1)}
-    .dash-title{font-family:'Cormorant Garamond',serif;font-size:1.6rem;font-weight:300}
-    .logout-btn{background:transparent;color:#b0b8c8;border:1px solid rgba(176,184,200,0.3);padding:0.5rem 1rem;border-radius:2px;cursor:pointer;font-size:0.7rem;letter-spacing:0.1em;text-transform:uppercase}
+    #dashboard { display:none; padding:1.5rem; }
+    .dash-top { display:flex; justify-content:space-between; align-items:center; margin-bottom:1.5rem; padding-bottom:1rem; border-bottom:1px solid rgba(176,184,200,0.1); }
+    .dash-title { font-size:1.5rem; font-weight:300; }
+    .logout-btn { background:transparent; color:#b0b8c8; border:1px solid rgba(176,184,200,0.3); padding:0.5rem 1rem; border-radius:4px; cursor:pointer; font-size:0.75rem; }
 
     /* TABS */
-    .tab-label{font-size:0.6rem;letter-spacing:0.2em;text-transform:uppercase;color:#8a96ae;margin-bottom:0.7rem}
-    .btn-row{display:flex;gap:0.6rem;flex-wrap:wrap;margin-bottom:1.2rem}
-    .cat-btn{font-family:'Jost',sans-serif;font-size:0.68rem;font-weight:500;letter-spacing:0.1em;text-transform:uppercase;padding:0.6rem 1.1rem;border-radius:2px;border:1px solid rgba(176,184,200,0.2);background:transparent;color:#b0b8c8;cursor:pointer;transition:all 0.2s}
-    .cat-btn.active{background:#d6dce8;color:#131c30;border-color:#d6dce8}
-    .sub-btn{font-family:'Jost',sans-serif;font-size:0.65rem;font-weight:400;letter-spacing:0.08em;text-transform:uppercase;padding:0.45rem 0.9rem;border-radius:2px;border:none;background:transparent;color:#8a96ae;cursor:pointer;border-bottom:2px solid transparent;transition:all 0.2s}
-    .sub-btn.active{color:#d6dce8;border-bottom-color:#d6dce8}
+    .tab-label { font-size:0.6rem; letter-spacing:0.2em; text-transform:uppercase; color:#8a96ae; margin-bottom:0.6rem; }
+    .btn-row { display:flex; gap:0.6rem; flex-wrap:wrap; margin-bottom:1.2rem; }
+    .cat-btn { font-family:'Jost',sans-serif; font-size:0.68rem; font-weight:500; letter-spacing:0.08em; text-transform:uppercase; padding:0.6rem 1rem; border-radius:4px; border:1px solid rgba(176,184,200,0.2); background:transparent; color:#b0b8c8; cursor:pointer; }
+    .cat-btn.active { background:#d6dce8; color:#131c30; border-color:#d6dce8; }
+    .sub-btn { font-family:'Jost',sans-serif; font-size:0.65rem; letter-spacing:0.08em; text-transform:uppercase; padding:0.4rem 0.8rem; border:none; background:transparent; color:#8a96ae; cursor:pointer; border-bottom:2px solid transparent; }
+    .sub-btn.active { color:#d6dce8; border-bottom-color:#d6dce8; }
 
-    /* MANAGING LABEL */
-    .managing{font-size:0.65rem;letter-spacing:0.15em;text-transform:uppercase;color:#8a96ae;margin-bottom:1rem}
-    .managing strong{color:#fff}
+    .managing { font-size:0.65rem; letter-spacing:0.12em; text-transform:uppercase; color:#8a96ae; margin-bottom:1rem; }
+    .managing strong { color:#fff; }
 
     /* UPLOAD */
-    .upload-area{border:2px dashed rgba(176,184,200,0.2);border-radius:6px;padding:1.8rem;text-align:center;margin-bottom:1rem;cursor:pointer;transition:border-color 0.3s}
-    .upload-area:hover{border-color:#b0b8c8}
-    .upload-area i{font-size:1.6rem;color:#b0b8c8;margin-bottom:0.6rem;display:block}
-    .upload-area p{font-size:0.8rem;color:#b0b8c8;margin-bottom:0.2rem}
-    .upload-area span{font-size:0.62rem;color:#8a96ae}
-    .upload-progress{font-size:0.78rem;color:#b0b8c8;text-align:center;margin-bottom:0.8rem;min-height:1.2rem}
+    .upload-area { border:2px dashed rgba(176,184,200,0.2); border-radius:8px; padding:1.8rem; text-align:center; margin-bottom:1rem; cursor:pointer; }
+    .upload-area:hover { border-color:#b0b8c8; }
+    .upload-area p { font-size:0.85rem; color:#b0b8c8; margin-bottom:0.3rem; }
+    .upload-area span { font-size:0.65rem; color:#8a96ae; }
+    .upload-progress { font-size:0.78rem; color:#b0b8c8; text-align:center; margin-bottom:0.8rem; min-height:1.2rem; }
 
-    /* PHOTO GRID */
-    .photo-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:0.8rem;margin-bottom:2rem}
-    .photo-item{position:relative;aspect-ratio:1;border-radius:4px;overflow:hidden;background:#253354}
-    .photo-item img{width:100%;height:100%;object-fit:cover}
-    .photo-del{position:absolute;top:0.4rem;right:0.4rem;width:26px;height:26px;border-radius:50%;background:rgba(231,76,60,0.9);color:#fff;border:none;cursor:pointer;font-size:0.9rem;display:flex;align-items:center;justify-content:center}
-    .photo-uploading{display:flex;align-items:center;justify-content:center;aspect-ratio:1;border-radius:4px;background:#253354;font-size:0.7rem;color:#b0b8c8;flex-direction:column;gap:0.4rem}
-    .grid-empty{grid-column:1/-1;text-align:center;padding:2rem;font-size:0.8rem;color:#8a96ae;border:1px dashed rgba(176,184,200,0.12);border-radius:4px}
+    /* GRID */
+    .photo-grid { display:grid; grid-template-columns:repeat(auto-fill,minmax(140px,1fr)); gap:0.8rem; margin-bottom:2rem; }
+    .photo-item { position:relative; aspect-ratio:1; border-radius:6px; overflow:hidden; background:#253354; }
+    .photo-item img { width:100%; height:100%; object-fit:cover; }
+    .photo-del { position:absolute; top:0.4rem; right:0.4rem; width:26px; height:26px; border-radius:50%; background:rgba(231,76,60,0.9); color:#fff; border:none; cursor:pointer; font-size:1rem; }
+    .photo-uploading { display:flex; align-items:center; justify-content:center; aspect-ratio:1; border-radius:6px; background:#253354; font-size:0.72rem; color:#b0b8c8; }
+    .grid-empty { grid-column:1/-1; text-align:center; padding:2rem; font-size:0.82rem; color:#8a96ae; border:1px dashed rgba(176,184,200,0.12); border-radius:6px; }
 
-    /* NEWS FORM */
-    .news-form{background:#1e2a45;border-radius:6px;padding:1.5rem;margin-bottom:1.5rem}
-    .news-form h4{font-family:'Cormorant Garamond',serif;font-size:1.1rem;font-weight:400;margin-bottom:1rem;color:#d6dce8}
-    .news-field{display:flex;flex-direction:column;gap:0.3rem;margin-bottom:0.8rem}
-    .news-field label{font-size:0.58rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:#8a96ae}
-    .news-field input,.news-field textarea,.news-field select{background:rgba(255,255,255,0.07);border:1px solid rgba(176,184,200,0.15);border-radius:2px;padding:0.55rem 0.8rem;font-family:'Jost',sans-serif;font-size:0.82rem;color:#fff;outline:none;width:100%}
-    .news-field textarea{resize:vertical;min-height:80px}
-    .news-save-btn{background:#d6dce8;color:#131c30;border:none;padding:0.7rem 1.5rem;border-radius:2px;font-family:'Jost',sans-serif;font-size:0.72rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer}
-    .news-list{display:flex;flex-direction:column;gap:0.8rem}
-    .news-item{background:#1e2a45;border-radius:4px;padding:1rem;display:flex;justify-content:space-between;align-items:flex-start;gap:1rem}
-    .news-item-info h5{font-size:0.88rem;font-weight:400;color:#d6dce8;margin-bottom:0.2rem}
-    .news-item-info p{font-size:0.72rem;color:#8a96ae}
-    .news-del-btn{background:rgba(231,76,60,0.8);color:#fff;border:none;padding:0.4rem 0.8rem;border-radius:2px;cursor:pointer;font-size:0.65rem;flex-shrink:0}
+    /* NEWS */
+    .news-form { background:#1e2a45; border-radius:8px; padding:1.5rem; margin-bottom:1.5rem; }
+    .news-form h4 { font-size:1rem; font-weight:400; margin-bottom:1rem; color:#d6dce8; }
+    .news-field { display:flex; flex-direction:column; gap:0.3rem; margin-bottom:0.8rem; }
+    .news-field label { font-size:0.6rem; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:#8a96ae; }
+    .news-field input, .news-field textarea, .news-field select { background:rgba(255,255,255,0.07); border:1px solid rgba(176,184,200,0.15); border-radius:4px; padding:0.55rem 0.8rem; font-family:'Jost',sans-serif; font-size:0.85rem; color:#fff; outline:none; width:100%; }
+    .news-field textarea { resize:vertical; min-height:80px; }
+    .news-save-btn { background:#d6dce8; color:#131c30; border:none; padding:0.7rem 1.5rem; border-radius:4px; font-family:'Jost',sans-serif; font-size:0.75rem; font-weight:500; cursor:pointer; }
+    .news-item { background:#1e2a45; border-radius:6px; padding:1rem; display:flex; justify-content:space-between; align-items:flex-start; gap:1rem; margin-bottom:0.8rem; }
+    .news-item h5 { font-size:0.88rem; font-weight:400; color:#d6dce8; margin-bottom:0.2rem; }
+    .news-item p { font-size:0.72rem; color:#8a96ae; }
+    .news-del-btn { background:rgba(231,76,60,0.8); color:#fff; border:none; padding:0.35rem 0.7rem; border-radius:4px; cursor:pointer; font-size:0.65rem; flex-shrink:0; }
 
     /* DETAILS MODAL */
-    #detailsModal{position:fixed;inset:0;z-index:999;background:rgba(0,0,0,0.8);display:none;align-items:center;justify-content:center;padding:1rem}
-    .details-box{background:#fff;border-radius:8px;padding:1.8rem;width:100%;max-width:480px;max-height:92vh;overflow-y:auto}
-    .details-title{font-family:'Cormorant Garamond',serif;font-size:1.4rem;font-weight:400;color:#131c30;margin-bottom:0.3rem}
-    .details-sub{font-size:0.72rem;color:#8a96ae;margin-bottom:1.2rem}
-    .details-grid{display:grid;grid-template-columns:1fr 1fr;gap:0.7rem;margin-bottom:1.2rem}
-    .details-field{display:flex;flex-direction:column;gap:0.3rem}
-    .details-field label{font-size:0.58rem;font-weight:500;letter-spacing:0.15em;text-transform:uppercase;color:#8a96ae}
-    .details-field input,.details-field select{background:#eef0f5;border:1px solid rgba(30,42,69,0.15);border-radius:2px;padding:0.5rem 0.65rem;font-family:'Jost',sans-serif;font-size:0.8rem;color:#131c30;outline:none;width:100%}
-    .details-btns{display:flex;gap:0.7rem}
-    .btn-save{flex:1;background:#1e2a45;color:#d6dce8;border:none;padding:0.8rem;border-radius:2px;font-family:'Jost',sans-serif;font-size:0.72rem;font-weight:500;letter-spacing:0.12em;text-transform:uppercase;cursor:pointer}
-    .btn-skip{flex:1;background:transparent;color:#1e2a45;border:1px solid #1e2a45;padding:0.8rem;border-radius:2px;font-family:'Jost',sans-serif;font-size:0.72rem;cursor:pointer}
+    #detailsModal { position:fixed; inset:0; z-index:999; background:rgba(0,0,0,0.8); display:none; align-items:center; justify-content:center; padding:1rem; }
+    #detailsModal.show { display:flex; }
+    .details-box { background:#fff; border-radius:10px; padding:1.8rem; width:100%; max-width:480px; max-height:92vh; overflow-y:auto; }
+    .details-title { font-family:'Jost',sans-serif; font-size:1.2rem; font-weight:400; color:#131c30; margin-bottom:0.3rem; }
+    .details-sub { font-size:0.75rem; color:#8a96ae; margin-bottom:1.2rem; }
+    .details-grid { display:grid; grid-template-columns:1fr 1fr; gap:0.7rem; margin-bottom:1.2rem; }
+    .details-field { display:flex; flex-direction:column; gap:0.3rem; }
+    .details-field label { font-size:0.58rem; font-weight:500; letter-spacing:0.12em; text-transform:uppercase; color:#8a96ae; }
+    .details-field input, .details-field select { background:#eef0f5; border:1px solid rgba(30,42,69,0.15); border-radius:4px; padding:0.5rem 0.65rem; font-family:'Jost',sans-serif; font-size:0.82rem; color:#131c30; outline:none; width:100%; }
+    .details-btns { display:flex; gap:0.7rem; }
+    .btn-save { flex:1; background:#1e2a45; color:#d6dce8; border:none; padding:0.8rem; border-radius:4px; font-family:'Jost',sans-serif; font-size:0.72rem; font-weight:500; cursor:pointer; }
+    .btn-skip { flex:1; background:transparent; color:#1e2a45; border:1px solid #1e2a45; padding:0.8rem; border-radius:4px; font-family:'Jost',sans-serif; font-size:0.72rem; cursor:pointer; }
 
-    /* SECTION DIVIDER */
-    .section-divider{border:none;border-top:1px solid rgba(176,184,200,0.1);margin:1.5rem 0}
+    /* HIDE NETLIFY */
+    a[href*="netlify.com"] + *, [data-netlify-deploy-id] { display:none!important; }
   </style>
 </head>
 <body>
@@ -107,40 +105,35 @@
 <!-- LOGIN -->
 <div id="loginScreen">
   <div class="login-box">
-    <img src="logo.png" class="login-logo" alt="NK"/>
+    <img src="logo.png" class="login-logo" alt="NK" onerror="this.style.display='none'"/>
     <h1 class="login-title">Admin Panel</h1>
     <p class="login-sub">Novel Knitts Private Limited</p>
-    <p class="login-error" id="loginError">Incorrect password.</p>
-    <input type="password" class="login-input" id="loginInput" placeholder="Enter password"/>
-    <button class="login-btn" id="loginBtn">Login</button>
+    <p class="login-error" id="loginError">Incorrect password. Please try again.</p>
+    <input type="password" class="login-input" id="loginInput" placeholder="Enter password" autocomplete="current-password"/>
+    <button class="login-btn" onclick="doLogin()">LOGIN</button>
   </div>
 </div>
 
 <!-- DASHBOARD -->
-<div id="dashboard" style="display:none;">
-  <div class="dash-header">
+<div id="dashboard">
+  <div class="dash-top">
     <div class="dash-title">Admin Dashboard</div>
-    <button class="logout-btn" id="logoutBtn">Logout</button>
+    <button class="logout-btn" onclick="doLogout()">Logout</button>
   </div>
 
-  <!-- MAIN CATEGORY TABS -->
   <p class="tab-label">Select Category</p>
   <div class="btn-row" id="catBtns"></div>
 
-  <!-- SUB CATEGORY TABS -->
   <div id="subArea" style="display:none;">
-    <p class="tab-label">Select Sub-Category</p>
+    <p class="tab-label">Sub-Category</p>
     <div class="btn-row" id="subBtns"></div>
   </div>
 
-  <!-- MANAGING LABEL -->
   <p class="managing" id="managingLabel" style="display:none;">Managing: <strong id="managingText"></strong></p>
 
-  <!-- PHOTO UPLOAD (shown for photo sections) -->
   <div id="photoSection" style="display:none;">
     <label class="upload-area" for="fileInput">
-      <i class="fa-solid fa-cloud-arrow-up"></i>
-      <p>Click to upload photos</p>
+      <p>📁 Click to upload photos</p>
       <span>JPG, PNG, WEBP — multiple files allowed</span>
     </label>
     <input type="file" id="fileInput" accept="image/*" multiple hidden/>
@@ -148,14 +141,12 @@
     <div class="photo-grid" id="photoGrid"></div>
   </div>
 
-  <!-- NEWS SECTION (shown for Media & Press) -->
   <div id="newsSection" style="display:none;">
-    <hr class="section-divider"/>
     <div class="news-form">
       <h4>Add News / Press Release</h4>
       <div class="news-field">
         <label>Title</label>
-        <input type="text" id="newsTitle" placeholder="e.g. Novel Knitts wins CMAI award"/>
+        <input type="text" id="newsTitle" placeholder="e.g. Novel Knitts wins award"/>
       </div>
       <div class="news-field">
         <label>Date / Period</label>
@@ -164,23 +155,23 @@
       <div class="news-field">
         <label>Category Tag</label>
         <select id="newsTag">
-          <option value="Company News">Company News</option>
-          <option value="Achievement">Achievement</option>
-          <option value="Milestone">Milestone</option>
-          <option value="Partnership">Partnership</option>
-          <option value="Event">Event</option>
-          <option value="Rebranding">Rebranding</option>
-          <option value="Export">Export</option>
-          <option value="Other">Other</option>
+          <option>Company News</option>
+          <option>Achievement</option>
+          <option>Milestone</option>
+          <option>Partnership</option>
+          <option>Event</option>
+          <option>Rebranding</option>
+          <option>Export</option>
+          <option>Other</option>
         </select>
       </div>
       <div class="news-field">
         <label>Description</label>
-        <textarea id="newsDesc" placeholder="Write the news content here..."></textarea>
+        <textarea id="newsDesc" placeholder="Write news content here..."></textarea>
       </div>
-      <button class="news-save-btn" id="newsSaveBtn">Add News</button>
+      <button class="news-save-btn" onclick="saveNews()">Add News</button>
     </div>
-    <div class="news-list" id="newsList"></div>
+    <div id="newsList"></div>
   </div>
 </div>
 
@@ -190,443 +181,300 @@
     <h3 class="details-title">Add Fabric Details</h3>
     <p class="details-sub">Optional — can be edited later from products page</p>
     <div class="details-grid">
-      <div class="details-field">
-        <label>Design No.</label>
-        <input type="text" id="dDesignNo" placeholder="e.g. NK-001"/>
-      </div>
-      <div class="details-field">
-        <label>Material Type</label>
+      <div class="details-field"><label>Design No.</label><input type="text" id="dDesignNo" placeholder="e.g. NK-001"/></div>
+      <div class="details-field"><label>Material Type</label>
         <select id="dMaterialType">
           <option value="">— Select —</option>
-          <option value="Poly">Poly</option>
-          <option value="PC">PC</option>
-          <option value="Poly Dyed">Poly Dyed</option>
-          <option value="Cotton Dyed">Cotton Dyed</option>
+          <option>Poly</option><option>PC</option>
+          <option>Poly Dyed</option><option>Cotton Dyed</option>
         </select>
       </div>
-      <div class="details-field">
-        <label>GSM</label>
-        <input type="text" id="dGsm" placeholder="e.g. 180"/>
-      </div>
-      <div class="details-field">
-        <label>Width</label>
-        <input type="text" id="dWidth" placeholder="e.g. 58 inches"/>
-      </div>
-      <div class="details-field">
-        <label>Polyester %</label>
-        <input type="text" id="dPolyester" placeholder="e.g. 60%"/>
-      </div>
-      <div class="details-field">
-        <label>Cotton %</label>
-        <input type="text" id="dCotton" placeholder="e.g. 40%"/>
-      </div>
-      <div class="details-field">
-        <label>Poly Dyed</label>
-        <input type="text" id="dPolyDyed" placeholder="e.g. Yes / No"/>
-      </div>
-      <div class="details-field">
-        <label>Cotton Dyed</label>
-        <input type="text" id="dCottonDyed" placeholder="e.g. Yes / No"/>
-      </div>
+      <div class="details-field"><label>GSM</label><input type="text" id="dGsm" placeholder="e.g. 180"/></div>
+      <div class="details-field"><label>Width</label><input type="text" id="dWidth" placeholder="e.g. 58 inches"/></div>
+      <div class="details-field"><label>Polyester %</label><input type="text" id="dPolyester" placeholder="e.g. 60%"/></div>
+      <div class="details-field"><label>Cotton %</label><input type="text" id="dCotton" placeholder="e.g. 40%"/></div>
+      <div class="details-field"><label>Poly Dyed</label><input type="text" id="dPolyDyed" placeholder="Yes / No"/></div>
+      <div class="details-field"><label>Cotton Dyed</label><input type="text" id="dCottonDyed" placeholder="Yes / No"/></div>
     </div>
     <div class="details-btns">
-      <button class="btn-save" id="btnSave">Save Details</button>
-      <button class="btn-skip" id="btnSkip">Skip</button>
+      <button class="btn-save" onclick="saveDetails()">Save Details</button>
+      <button class="btn-skip" onclick="skipDetails()">Skip</button>
     </div>
   </div>
 </div>
 
 <script>
-  const CLOUD = 'dtzc3gki';
-  const PRESET = 'novelknitts';
-  const PASS = 'novelknitts2026';
+var PASS = 'novelknitts2026';
+var CLOUD = 'dtzc3gki';
+var PRESET = 'novelknitts';
+var curSection = null;
+var curSub = null;
+var pendingUrl = null;
+var db = null;
 
-  // SECTIONS CONFIG
-  const SECTIONS = {
-    'home-textiles': {
-      label: 'Home Textiles',
-      type: 'photos',
-      subs: {
-        'curtains': 'Curtains',
-        'runners-throws-tablecover': 'Runners / Throws / Table Cover',
-        'doormats': 'Doormats'
-      }
-    },
-    'garments': {
-      label: 'Garments',
-      type: 'photos',
-      subs: {
-        'mens': "Men's",
-        'womens': "Women's",
-        'kid's: "Kid's"
-      }
-    },
+var SECTIONS = {
+  'home-textiles': { label:'Home Textiles', type:'photos', subs:{'curtains':'Curtains','runners-throws-tablecover':'Runners/Throws/Table Cover','doormats':'Doormats'} },
+  'garments': { label:'Garments', type:'photos', subs:{'mens':"Men's",'womens':"Women's",'kids':"Kids'",'jacket-shrugs-coverup':'Jacket/Shrugs/Coverup'} },
+  'technical': { label:'Technical', type:'photos', subs:{'technical':'Technical','events':'Events'} },
+  'accessories': { label:'Accessories', type:'photos', subs:{'muffler-scarf-stole':'Muffler/Scarf/Stole','hat-cap':'Hat/Cap','bag':'Bags','soft-toys':'Soft Toys'} },
+  'media-press': { label:'Media & Press', type:'media', subs:{'awards-certifications':'Awards & Certifications','events':'Events','coverage':'Media Coverage'} },
+  'directors': { label:'Directors', type:'photos', subs:{'anjani':'Anjani Kedia','divyansh':'Divyansh Marodia'} }
+};
 
-    'technical': {
-      label: 'Technical',
-      type: 'photos',
-      subs: {
-        'technical': 'Technical',
-        'events': 'Events'
-      }
-    },
-    'accessories': {
-      label: 'Accessories',
-      type: 'photos',
-      subs: {
-        'muffler-scarf-stole': 'Muffler / Scarf / Stole',
-        'hat-cap': 'Hat / Cap',
-        'bag': 'Bags',
-        'soft-toys': 'Soft Toys'
-      }
-    },
-    'media-press': {
-      label: 'Media & Press',
-      type: 'media',
-      subs: {
-        'awards-certifications': 'Awards & Certifications',
-        'events': 'Events',
-        'coverage': 'Media Coverage'
-      }
-    },
-    'directors': {
-      label: 'Directors',
-      type: 'photos',
-      subs: {
-        'anjani': 'Anjani Kedia',
-        'divyansh': 'Divyansh Marodia'
-      }
-    }
-  };
-
-  let curSection = null;
-  let curSub = null;
-  let pendingUrl = null;
-
-  // ── LOGIN ──
-  window.addEventListener('load', function() {
-    document.getElementById('loginBtn').addEventListener('click', doLogin);
-    document.getElementById('loginInput').addEventListener('keydown', function(e) { if(e.key==='Enter') doLogin(); });
-  });
-
-  function doLogin() {
-    if (document.getElementById('loginInput').value === PASS) {
-      document.getElementById('loginError').style.display = 'none';
-      document.getElementById('loginScreen').style.display = 'none';
-      document.getElementById('dashboard').style.display = 'block';
-      buildCatBtns();
-    } else {
-      document.getElementById('loginError').style.display = 'block';
-    }
+// LOGIN
+function doLogin() {
+  var val = document.getElementById('loginInput').value;
+  var err = document.getElementById('loginError');
+  if (val === PASS) {
+    err.style.display = 'none';
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+    initFirebase();
+    buildCats();
+  } else {
+    err.style.display = 'block';
   }
+}
 
-  document.getElementById('logoutBtn').addEventListener('click', () => {
-    document.getElementById('loginScreen').style.display = 'flex';
-    document.getElementById('dashboard').style.display = 'none';
-    document.getElementById('loginInput').value = '';
-    curSection = null; curSub = null;
-  });
+function doLogout() {
+  document.getElementById('loginScreen').style.display = 'flex';
+  document.getElementById('dashboard').style.display = 'none';
+  document.getElementById('loginInput').value = '';
+  curSection = null; curSub = null;
+}
 
-  // ── BUILD CATEGORY BUTTONS ──
-  function buildCatBtns() {
-    const container = document.getElementById('catBtns');
-    container.innerHTML = '';
-    Object.entries(SECTIONS).forEach(([key, val]) => {
-      const btn = document.createElement('button');
-      btn.className = 'cat-btn';
-      btn.textContent = val.label;
-      btn.addEventListener('click', () => {
-        document.querySelectorAll('.cat-btn').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        selectSection(key);
+// Enter key on password
+document.getElementById('loginInput').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter') doLogin();
+});
+
+// Firebase init ONLY after login
+function initFirebase() {
+  if (!db) {
+    if (!firebase.apps.length) {
+      firebase.initializeApp({
+        apiKey: "AIzaSyC4lJuq3hFSegRZYTyQqERFARWfmyAyEiQ",
+        authDomain: "novel-knitts.firebaseapp.com",
+        projectId: "novel-knitts",
+        storageBucket: "novel-knitts.firebasestorage.app",
+        messagingSenderId: "1076525870787",
+        appId: "1:1076525870787:web:c16a19fe23a35114287c76"
       });
-      container.appendChild(btn);
+    }
+    db = firebase.firestore();
+  }
+}
+
+function docId() { return curSub ? curSection + '_' + curSub : curSection; }
+
+function buildCats() {
+  var container = document.getElementById('catBtns');
+  container.innerHTML = '';
+  Object.keys(SECTIONS).forEach(function(key) {
+    var btn = document.createElement('button');
+    btn.className = 'cat-btn';
+    btn.textContent = SECTIONS[key].label;
+    btn.onclick = function() { selectCat(key, btn); };
+    container.appendChild(btn);
+  });
+}
+
+function selectCat(key, btn) {
+  curSection = key; curSub = null;
+  document.querySelectorAll('.cat-btn').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  var sec = SECTIONS[key];
+  var subArea = document.getElementById('subArea');
+  var subBtns = document.getElementById('subBtns');
+  if (sec.subs) {
+    subArea.style.display = 'block';
+    subBtns.innerHTML = '';
+    var first = true;
+    Object.keys(sec.subs).forEach(function(sk) {
+      var b = document.createElement('button');
+      b.className = 'sub-btn' + (first ? ' active' : '');
+      b.textContent = sec.subs[sk];
+      b.onclick = function() {
+        document.querySelectorAll('.sub-btn').forEach(function(x) { x.classList.remove('active'); });
+        b.classList.add('active');
+        curSub = sk;
+        updateLabel(); loadContent();
+      };
+      subBtns.appendChild(b);
+      if (first) { curSub = sk; first = false; }
     });
-  }
-
-  function selectSection(key) {
-    curSection = key;
+  } else {
+    subArea.style.display = 'none';
     curSub = null;
-    const sec = SECTIONS[key];
-
-    // Show/hide sub tabs
-    const subArea = document.getElementById('subArea');
-    const subBtns = document.getElementById('subBtns');
-    if (sec.subs) {
-      subArea.style.display = 'block';
-      subBtns.innerHTML = '';
-      Object.entries(sec.subs).forEach(([subKey, subLabel], i) => {
-        const btn = document.createElement('button');
-        btn.className = 'sub-btn' + (i===0 ? ' active' : '');
-        btn.textContent = subLabel;
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('.sub-btn').forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          curSub = subKey;
-          updateLabel();
-          loadContent();
-        });
-        subBtns.appendChild(btn);
-      });
-      curSub = Object.keys(sec.subs)[0];
-    } else {
-      subArea.style.display = 'none';
-      curSub = null;
-    }
-    updateLabel();
-    loadContent();
   }
+  updateLabel(); loadContent();
+}
 
-  function docId() {
-    return curSub ? curSection + '_' + curSub : curSection;
-  }
+function updateLabel() {
+  var lbl = document.getElementById('managingLabel');
+  var txt = document.getElementById('managingText');
+  if (!curSection) { lbl.style.display = 'none'; return; }
+  lbl.style.display = 'block';
+  var sec = SECTIONS[curSection];
+  txt.textContent = curSub && sec.subs ? sec.label + ' / ' + sec.subs[curSub] : sec.label;
+}
 
-  function updateLabel() {
-    const lbl = document.getElementById('managingLabel');
-    const txt = document.getElementById('managingText');
-    if (!curSection) { lbl.style.display='none'; return; }
-    lbl.style.display = 'block';
-    const sec = SECTIONS[curSection];
-    txt.textContent = curSub && sec.subs ? sec.label + ' / ' + sec.subs[curSub] : sec.label;
-  }
+function loadContent() {
+  var sec = SECTIONS[curSection];
+  document.getElementById('photoSection').style.display = 'block';
+  document.getElementById('newsSection').style.display = sec.type === 'media' ? 'block' : 'none';
+  loadPhotos();
+  if (sec.type === 'media') loadNews();
+}
 
-  // ── LOAD CONTENT ──
-  function loadContent() {
-    const sec = SECTIONS[curSection];
-    if (sec.type === 'media') {
-      document.getElementById('photoSection').style.display = 'block';
-      document.getElementById('newsSection').style.display = 'block';
-      loadPhotos();
-      loadNews();
-    } else {
-      document.getElementById('photoSection').style.display = 'block';
-      document.getElementById('newsSection').style.display = 'none';
-      loadPhotos();
-    }
-  }
+function loadPhotos() {
+  var grid = document.getElementById('photoGrid');
+  grid.innerHTML = '<div class="grid-empty">Loading...</div>';
+  db.collection('galleries').doc(docId()).collection('photos').get().then(function(snap) {
+    if (snap.empty) { grid.innerHTML = '<div class="grid-empty">No photos yet.</div>'; return; }
+    grid.innerHTML = '';
+    snap.forEach(function(d) {
+      var item = document.createElement('div');
+      item.className = 'photo-item';
+      var img = document.createElement('img');
+      img.src = d.data().url.replace('/upload/', '/upload/q_auto,f_auto,w_300/');
+      var del = document.createElement('button');
+      del.className = 'photo-del';
+      del.innerHTML = '&times;';
+      del.onclick = function() {
+        if (confirm('Delete this photo?')) {
+          db.collection('galleries').doc(docId()).collection('photos').doc(d.id).delete().then(loadPhotos);
+        }
+      };
+      item.appendChild(img);
+      item.appendChild(del);
+      grid.appendChild(item);
+    });
+  }).catch(function(e) {
+    grid.innerHTML = '<div class="grid-empty">Error: ' + e.message + '</div>';
+  });
+}
 
-  // ── LOAD PHOTOS ──
-  async function loadPhotos() {
-    const grid = document.getElementById('photoGrid');
-    grid.innerHTML = '<div class="grid-empty">Loading...</div>';
-    try {
-      const snap = await window.db.collection('galleries').doc(docId()).collection('photos').get();
-      if (snap.empty) { grid.innerHTML = '<div class="grid-empty">No photos yet.</div>'; return; }
-      grid.innerHTML = '';
-      snap.forEach(d => {
-        const item = document.createElement('div');
-        item.className = 'photo-item';
-        const img = document.createElement('img');
-        img.src = d.data().url.replace('/upload/','/upload/q_auto,f_auto,w_300/');
-        img.alt = 'Photo';
-        const del = document.createElement('button');
-        del.className = 'photo-del';
-        del.innerHTML = '&times;';
-        del.addEventListener('click', async () => {
-          if (confirm('Delete this photo?')) {
-            await window.db.collection('galleries').doc(docId()).collection('photos').doc(d.id).delete();
-            loadPhotos();
-          }
-        });
-        item.appendChild(img);
-        item.appendChild(del);
-        grid.appendChild(item);
-      });
-    } catch(e) {
-      grid.innerHTML = '<div class="grid-empty">Error: ' + e.message + '</div>';
-    }
-  }
-
-  // ── UPLOAD ──
-  document.getElementById('fileInput').addEventListener('change', async e => {
-    if (!curSection) { alert('Please select a category first!'); e.target.value=''; return; }
-    const files = Array.from(e.target.files);
-    if (!files.length) return;
-    const progress = document.getElementById('uploadProgress');
-    const isProductSection = !['media-press','directors'].includes(curSection);
-
-    for (let i = 0; i < files.length; i++) {
-      progress.textContent = 'Uploading ' + (i+1) + ' of ' + files.length + '...';
-      const grid = document.getElementById('photoGrid');
-      const ph = document.createElement('div');
-      ph.className = 'photo-uploading';
-      ph.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i><span>Uploading...</span>';
-      grid.appendChild(ph);
-
-      try {
-        const fd = new FormData();
-        fd.append('file', files[i]);
-        fd.append('upload_preset', PRESET);
-        const res = await fetch('https://api.cloudinary.com/v1_1/' + CLOUD + '/image/upload', {method:'POST', body:fd});
-        const data = await res.json();
+document.getElementById('fileInput').addEventListener('change', function(e) {
+  if (!curSection) { alert('Select a category first!'); return; }
+  var files = Array.from(e.target.files);
+  var progress = document.getElementById('uploadProgress');
+  var isProduct = ['media-press','directors'].indexOf(curSection) === -1;
+  files.forEach(function(file, i) {
+    progress.textContent = 'Uploading ' + (i+1) + ' of ' + files.length + '...';
+    var grid = document.getElementById('photoGrid');
+    var ph = document.createElement('div');
+    ph.className = 'photo-uploading';
+    ph.textContent = 'Uploading...';
+    grid.appendChild(ph);
+    var fd = new FormData();
+    fd.append('file', file);
+    fd.append('upload_preset', PRESET);
+    fetch('https://api.cloudinary.com/v1_1/' + CLOUD + '/image/upload', {method:'POST', body:fd})
+      .then(function(r) { return r.json(); })
+      .then(function(data) {
         ph.remove();
-
         if (data.secure_url) {
-          // Product sections show details form, others save directly
-          if (isProductSection) {
-            pendingUrl = data.secure_url;
-            ['dDesignNo','dGsm','dWidth','dPolyester','dCotton','dPolyDyed','dCottonDyed'].forEach(id => document.getElementById(id).value = '');
+          pendingUrl = data.secure_url;
+          if (isProduct) {
+            ['dDesignNo','dGsm','dWidth','dPolyester','dCotton','dPolyDyed','dCottonDyed'].forEach(function(id) { document.getElementById(id).value = ''; });
             document.getElementById('dMaterialType').value = '';
-            document.getElementById('detailsModal').style.display = 'flex';
-            progress.textContent = '✅ Uploaded! Add details below.';
+            document.getElementById('detailsModal').classList.add('show');
           } else {
-            // Directors / Media — save directly without details form
-            await window.db.collection('galleries').doc(docId()).collection('photos').add({
-              url: data.secure_url, details: {}, createdAt: Date.now()
+            db.collection('galleries').doc(docId()).collection('photos').add({url:pendingUrl, details:{}, createdAt:Date.now()}).then(function() {
+              progress.textContent = '✅ Saved!';
+              setTimeout(function() { progress.textContent = ''; }, 2000);
+              loadPhotos();
             });
-            progress.textContent = '✅ Photo saved!';
-            setTimeout(() => { progress.textContent = ''; }, 2000);
-            loadPhotos();
           }
-        } else {
-          alert('Upload failed: ' + (data.error ? data.error.message : 'Unknown error'));
-        }
-      } catch(err) {
-        ph.remove();
-        alert('Error: ' + err.message);
-      }
-    }
-    e.target.value = '';
+        } else { alert('Upload failed'); }
+      }).catch(function(err) { ph.remove(); alert('Error: ' + err.message); });
   });
+  e.target.value = '';
+});
 
-  // ── SAVE DETAILS ──
-  document.getElementById('btnSave').addEventListener('click', async () => {
-    if (!pendingUrl) return;
-    const details = {
-      designNo:     document.getElementById('dDesignNo').value.trim(),
-      materialType: document.getElementById('dMaterialType').value,
-      gsm:          document.getElementById('dGsm').value.trim(),
-      width:        document.getElementById('dWidth').value.trim(),
-      polyester:    document.getElementById('dPolyester').value.trim(),
-      cotton:       document.getElementById('dCotton').value.trim(),
-      polyDyed:     document.getElementById('dPolyDyed').value.trim(),
-      cottonDyed:   document.getElementById('dCottonDyed').value.trim(),
-    };
-    try {
-      await window.db.collection('galleries').doc(docId()).collection('photos').add({
-        url: pendingUrl, details, createdAt: Date.now()
-      });
-      pendingUrl = null;
-      document.getElementById('detailsModal').style.display = 'none';
-      document.getElementById('uploadProgress').textContent = '✅ Saved!';
-      setTimeout(() => { document.getElementById('uploadProgress').textContent = ''; }, 2000);
-      loadPhotos();
-    } catch(err) {
-      alert('Save failed: ' + err.message);
-    }
+function saveDetails() {
+  if (!pendingUrl) return;
+  var details = {
+    designNo: document.getElementById('dDesignNo').value.trim(),
+    materialType: document.getElementById('dMaterialType').value,
+    gsm: document.getElementById('dGsm').value.trim(),
+    width: document.getElementById('dWidth').value.trim(),
+    polyester: document.getElementById('dPolyester').value.trim(),
+    cotton: document.getElementById('dCotton').value.trim(),
+    polyDyed: document.getElementById('dPolyDyed').value.trim(),
+    cottonDyed: document.getElementById('dCottonDyed').value.trim()
+  };
+  db.collection('galleries').doc(docId()).collection('photos').add({url:pendingUrl, details:details, createdAt:Date.now()}).then(function() {
+    pendingUrl = null;
+    document.getElementById('detailsModal').classList.remove('show');
+    document.getElementById('uploadProgress').textContent = '✅ Saved!';
+    setTimeout(function() { document.getElementById('uploadProgress').textContent = ''; }, 2000);
+    loadPhotos();
+  }).catch(function(e) { alert('Save failed: ' + e.message); });
+}
+
+function skipDetails() {
+  if (!pendingUrl) return;
+  db.collection('galleries').doc(docId()).collection('photos').add({url:pendingUrl, details:{}, createdAt:Date.now()}).then(function() {
+    pendingUrl = null;
+    document.getElementById('detailsModal').classList.remove('show');
+    document.getElementById('uploadProgress').textContent = '✅ Saved!';
+    setTimeout(function() { document.getElementById('uploadProgress').textContent = ''; }, 2000);
+    loadPhotos();
+  }).catch(function(e) { alert('Save failed: ' + e.message); });
+}
+
+function loadNews() {
+  var list = document.getElementById('newsList');
+  list.innerHTML = '';
+  db.collection('news').get().then(function(snap) {
+    if (snap.empty) { list.innerHTML = '<p style="color:#8a96ae;font-size:0.82rem;padding:1rem;">No news yet.</p>'; return; }
+    snap.forEach(function(d) {
+      var data = d.data();
+      var item = document.createElement('div');
+      item.className = 'news-item';
+      item.innerHTML = '<div><h5>' + data.title + '</h5><p>' + (data.date||'') + ' · ' + (data.tag||'') + '</p></div>';
+      var del = document.createElement('button');
+      del.className = 'news-del-btn';
+      del.textContent = 'Delete';
+      del.onclick = function() {
+        if (confirm('Delete?')) db.collection('news').doc(d.id).delete().then(loadNews);
+      };
+      item.appendChild(del);
+      list.appendChild(item);
+    });
   });
+}
 
-  document.getElementById('btnSkip').addEventListener('click', async () => {
-    if (!pendingUrl) return;
-    try {
-      await window.db.collection('galleries').doc(docId()).collection('photos').add({
-        url: pendingUrl, details: {}, createdAt: Date.now()
-      });
-      pendingUrl = null;
-      document.getElementById('detailsModal').style.display = 'none';
-      document.getElementById('uploadProgress').textContent = '✅ Saved!';
-      setTimeout(() => { document.getElementById('uploadProgress').textContent = ''; }, 2000);
-      loadPhotos();
-    } catch(err) {
-      alert('Save failed: ' + err.message);
-    }
-  });
+function saveNews() {
+  var title = document.getElementById('newsTitle').value.trim();
+  var desc = document.getElementById('newsDesc').value.trim();
+  if (!title || !desc) { alert('Fill in Title and Description'); return; }
+  db.collection('news').add({
+    title: title,
+    date: document.getElementById('newsDate').value.trim(),
+    tag: document.getElementById('newsTag').value,
+    desc: desc,
+    createdAt: Date.now()
+  }).then(function() {
+    document.getElementById('newsTitle').value = '';
+    document.getElementById('newsDate').value = '';
+    document.getElementById('newsDesc').value = '';
+    alert('✅ News added!');
+    loadNews();
+  }).catch(function(e) { alert('Error: ' + e.message); });
+}
 
-  // ── NEWS (Media & Press) ──
-  async function loadNews() {
-    const list = document.getElementById('newsList');
-    list.innerHTML = '<p style="font-size:0.78rem;color:#8a96ae;text-align:center;padding:1rem;">Loading...</p>';
-    try {
-      const snap = await window.db.collection('news').orderBy('createdAt','desc').get();
-      if (snap.empty) { list.innerHTML = '<p style="font-size:0.78rem;color:#8a96ae;text-align:center;padding:1rem;">No news added yet.</p>'; return; }
-      list.innerHTML = '';
-      snap.forEach(d => {
-        const data = d.data();
-        const item = document.createElement('div');
-        item.className = 'news-item';
-        item.innerHTML = `
-          <div class="news-item-info">
-            <h5>${data.title}</h5>
-            <p>${data.date} · ${data.tag}</p>
-          </div>
-          <button class="news-del-btn" data-id="${d.id}">Delete</button>`;
-        item.querySelector('.news-del-btn').addEventListener('click', async () => {
-          if (confirm('Delete this news item?')) {
-            await window.db.collection('news').doc(d.id).delete();
-            loadNews();
-          }
-        });
-        list.appendChild(item);
-      });
-    } catch(e) {
-      // Try without orderBy if index not ready
-      try {
-        const snap2 = await window.db.collection('news').get();
-        list.innerHTML = '';
-        snap2.forEach(d => {
-          const data = d.data();
-          const item = document.createElement('div');
-          item.className = 'news-item';
-          item.innerHTML = `<div class="news-item-info"><h5>${data.title}</h5><p>${data.date} · ${data.tag}</p></div><button class="news-del-btn" data-id="${d.id}">Delete</button>`;
-          item.querySelector('.news-del-btn').addEventListener('click', async () => {
-            if (confirm('Delete this news item?')) {
-              await window.db.collection('news').doc(d.id).delete();
-              loadNews();
-            }
-          });
-          list.appendChild(item);
-        });
-      } catch(e2) {
-        list.innerHTML = '<p style="font-size:0.78rem;color:#e74c3c;padding:1rem;">Error loading news.</p>';
-      }
-    }
-  }
-
-  document.getElementById('newsSaveBtn').addEventListener('click', async () => {
-    const title = document.getElementById('newsTitle').value.trim();
-    const date  = document.getElementById('newsDate').value.trim();
-    const tag   = document.getElementById('newsTag').value;
-    const desc  = document.getElementById('newsDesc').value.trim();
-    if (!title || !desc) { alert('Please fill in Title and Description.'); return; }
-    try {
-      await window.db.collection('news').add({ title, date, tag, desc, createdAt: Date.now() });
-      document.getElementById('newsTitle').value = '';
-      document.getElementById('newsDate').value = '';
-      document.getElementById('newsDesc').value = '';
-      alert('✅ News added!');
-      loadNews();
-    } catch(e) {
-      alert('Error: ' + e.message);
+// Remove Netlify badge
+setTimeout(function() {
+  document.querySelectorAll('a').forEach(function(a) {
+    if (a.href && a.href.includes('netlify.com')) {
+      var p = a.parentElement;
+      if (p) p.style.display = 'none';
     }
   });
-</script>
-
-<style>
-  [data-netlify-deploy-id], .netlify-badge, 
-  a[href*="netlify.com"][style*="fixed"],
-  div[style*="z-index: 99999"], div[style*="z-index:99999"],
-  #netlify-dev-badge { 
-    display:none!important; opacity:0!important; visibility:hidden!important; 
-    pointer-events:none!important; height:0!important; width:0!important;
-  }
-</style>
-<script>
-  (function() {
-    function removeNetlify() {
-      document.querySelectorAll('*').forEach(function(el) {
-        var style = el.getAttribute('style') || '';
-        var href = el.getAttribute('href') || '';
-        if ((style.includes('fixed') || style.includes('z-index')) && href.includes('netlify')) {
-          el.parentElement && el.parentElement.remove();
-        }
-      });
-    }
-    setTimeout(removeNetlify, 500);
-    setTimeout(removeNetlify, 1500);
-    setTimeout(removeNetlify, 3000);
-    var obs = new MutationObserver(removeNetlify);
-    obs.observe(document.body, {childList:true, subtree:true});
-  })();
+}, 1000);
 </script>
 </body>
 </html>
